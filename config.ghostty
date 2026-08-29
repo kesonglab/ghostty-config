@@ -1,0 +1,55 @@
+# ================= Ghostty macOS 自用配置 =================
+# 需提前安装 brew install --cask font-jetbrains-mono-nerd-font
+# 重载配置快捷键：Cmd + Shift + ,
+# 查看内置全部主题：ghostty +list-themes
+# 校验配置：ghostty +validate-config
+
+# -------- 字体设置 --------
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 14
+font-thicken = true
+adjust-cell-height = 4
+# 中文 fallback，解决中文渲染发虚
+font-codepoint-map = U+2E80-U+9FFF,U+F900-U+FAFF,U+FF00-U+FFEF=PingFang SC
+
+# -------- 主题 跟随系统深浅模式 --------
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+window-theme = auto
+
+# -------- 窗口外观 毛玻璃透明 --------
+macos-titlebar-style = transparent
+window-padding-x = 12
+window-padding-y = 10
+window-padding-balance = true
+background-opacity = 0.72
+background-blur = 18
+window-save-state = always
+
+# -------- 光标、滚动 --------
+cursor-style = bar
+cursor-style-blink = true
+scrollback-limit = 50000
+scrollbar = never
+
+# -------- 鼠标行为 --------
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+
+# -------- 安全与粘贴保护 --------
+clipboard-paste-protection = true
+clipboard-paste-bracketed-safe = true
+confirm-close-surface = false
+
+# -------- Shell 集成（zsh/fish 自动识别） --------
+shell-integration = detect
+shell-integration-features = cursor,sudo,ssh-env,path
+
+# -------- 快捷键 （iTerm2习惯） --------
+# Tab标签
+keybind = cmd+t=new_tab
+keybind = cmd+w=close_surface
+keybind = cmd+shift+left=previous_tab
+keybind = cmd+shift+right=next_tab
+
+# -------- macOS Option键行为：Option作为Alt，方便跳转单词 --------
+macos-option-as-alt = left

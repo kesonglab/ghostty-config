@@ -1,0 +1,17 @@
+# Ghostty 配置目录中可能产生的临时与备份文件
+config.ghostty.bak
+config.ghostty.old
+*.backup
+*.orig
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器与 IDE
+.vscode/
+.vscode.ldb
+.idea/
+*.swp
+*.swo
+*~
