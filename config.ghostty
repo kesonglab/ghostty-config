@@ -1,5 +1,4 @@
-# ================= Ghostty macOS 自用配置 =================
-# 需提前安装 brew install --cask font-jetbrains-mono-nerd-font
+# ================= Ghostty 开箱配置 macOS =================
 # 重载配置快捷键：Cmd + Shift + ,
 # 查看内置全部主题：ghostty +list-themes
 # 校验配置：ghostty +validate-config
@@ -66,3 +65,6 @@ keybind = cmd+alt+down=goto_split:bottom
 
 # -------- macOS Option键行为：Option作为Alt，方便跳转单词 --------
 macos-option-as-alt = left
+
+# -------- 默认工作目录：新窗口/新标签初始打开到此处 --------
+working-directory = "~/Documents/github:kesonglab"
