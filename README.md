@@ -24,12 +24,22 @@
 | `cmd + alt + 方向键` | 在分屏间切换 |
 | `cmd + shift + ,` | 重载配置 |
 
+## CI 自动化检查
+
+项目通过 [GitHub Actions](https://github.com/kesonglab/ghostty-config/actions) 在每次 push / PR 上自动运行：
+
+- **validate-config**：在 macOS 运行 `ghostty +validate-config --config-file=config.ghostty`，校验配置语法与键值（配置为 macOS 专属，故用 macOS runner）
+- **markdownlint**：检查 `*.md` 是否符合 markdownlint 规范（见 `.markdownlint-cli2.jsonc`）
+
+合入前确保 CI 全部通过即可。
+
 ## 目录结构
 
 ```
 ghostty-config
 ├── config.ghostty   # Ghostty 主配置文件
 ├── CHANGELOG.md     # 更新日志
+├── .github/workflows/ci.yml   # CI 自动化检查
 ├── .gitignore
 ├── LICENSE
 └── README.md
