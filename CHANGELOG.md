@@ -1,10 +1,13 @@
 # Changelog
 
-本项目的所有显著变更记录在此文件。
-格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
-版本号遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
+本项目的所有显著变更记录于此。
+格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
-## [未发布]
+## [0.2.0] - 2026-09-01
+
+### 新增
+
+- `working-directory = "~/Documents/github:kesonglab"`：新窗口/标签默认打开到该工作目录。路径含冒号（`github:kesonglab`），值用引号包裹以避免解析歧义。
 
 ## [0.1.0] - 2026-09-01
 
@@ -34,6 +37,6 @@ Ghostty macOS 配置文件首次开源发布。
 
 - 初始版本：字体（JetBrainsMono Nerd Font + 中文 PingFang SC 回退）、Catppuccin 深浅主题自适应、毛玻璃透明窗口、光标/滚动、粘贴保护、Shell 集成、iTerm2 Tab 快捷键、Option 键作为 Alt
 
-[未发布]: https://github.com/kesonglab/ghostty-config/compare/v0.1.0...HEAD
+[0.2.0]: https://github.com/kesonglab/ghostty-config/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/kesonglab/ghostty-config/releases/tag/v0.1.0
 [0.0.1]: https://github.com/kesonglab/ghostty-config/releases/tag/v0.0.1
