@@ -11,6 +11,8 @@ font-thicken = true
 adjust-cell-height = 4
 # 中文 fallback，解决中文渲染发虚
 font-codepoint-map = U+2E80-U+9FFF,U+F900-U+FAFF,U+FF00-U+FFEF=PingFang SC
+# 新窗口/分屏继承当前字号
+window-inherit-font-size = true
 
 # -------- 主题 跟随系统深浅模式 --------
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
@@ -28,12 +30,15 @@ window-save-state = always
 # -------- 光标、滚动 --------
 cursor-style = bar
 cursor-style-blink = true
-scrollback-limit = 50000
+# 滚动缓冲区按字节计，10MB 默认（重度日志可调 100000000）
+scrollback-limit = 10000000
 scrollbar = never
 
 # -------- 鼠标行为 --------
 mouse-hide-while-typing = true
 copy-on-select = clipboard
+# 触控板滚动速度微调（可选，默认 precision:1）
+mouse-scroll-multiplier = precision:1.5
 
 # -------- 安全与粘贴保护 --------
 clipboard-paste-protection = true
@@ -42,7 +47,7 @@ confirm-close-surface = false
 
 # -------- Shell 集成（zsh/fish 自动识别） --------
 shell-integration = detect
-shell-integration-features = cursor,sudo,ssh-env,path
+shell-integration-features = title,cursor,sudo,ssh-env,path
 
 # -------- 快捷键 （iTerm2习惯） --------
 # Tab标签
@@ -50,6 +55,14 @@ keybind = cmd+t=new_tab
 keybind = cmd+w=close_surface
 keybind = cmd+shift+left=previous_tab
 keybind = cmd+shift+right=next_tab
+
+# 分屏
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+alt+left=goto_split:left
+keybind = cmd+alt+right=goto_split:right
+keybind = cmd+alt+up=goto_split:top
+keybind = cmd+alt+down=goto_split:bottom
 
 # -------- macOS Option键行为：Option作为Alt，方便跳转单词 --------
 macos-option-as-alt = left
