@@ -3,6 +3,16 @@
 本项目的所有显著变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [0.2.1] - 2026-09-04
+
+### 新增
+
+- README「中文字体回退」小节：列出 `PingFang SC`、`Hiragino Sans GB`、`Noto Sans CJK SC` 等可选回退字体及适用场景，并给出 Ghostty 1.2+ 推荐的 `font-family` 列表写法。当系统未装 PingFang SC（精简镜像/字体清理工具）导致中文显示为方框时，可按表替换。
+
+### 说明
+
+- 仓库 `config.ghostty` 主配置**未改动**，仍以 PingFang SC 为默认；该次更新仅补全文档。
+
 ## [0.2.0] - 2026-09-01
 
 ### 新增

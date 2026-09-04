@@ -6,7 +6,7 @@
 
 ### 外观
 
-- 字体：JetBrainsMono Nerd Font Mono；中文字符回退 PingFang SC，解决中文渲染发虚；新窗口/分屏继承当前字号
+- 字体：JetBrainsMono Nerd Font Mono；中文字符回退 PingFang SC（macOS 自带，毛玻璃/Retina 下渲染不发虚）；新窗口/分屏继承当前字号
 - 主题随系统深浅模式自动切换：浅色 Catppuccin Latte、深色 Catppuccin Mocha
 - 透明毛玻璃窗口，支持自定义内边距
 
@@ -90,6 +90,25 @@ ghostty +validate-config
 ```bash
 ghostty +list-themes
 ```
+
+### 中文字体回退
+
+仓库默认使用 **PingFang SC**（macOS Sonoma 及更早版本系统自带，渲染不发虚）。如果你装了字体优化工具、或在 macOS Sequoia 之后某些精简镜像里发现 PingFang SC 不存在、中文显示为方框 □，可按下表任选一种已确认存在的字体替换 `font-codepoint-map` 右侧的字体名：
+
+| 字体名 | 适用场景 | 风格 |
+| --- | --- | --- |
+| `PingFang SC` | macOS 原生自带（默认） | 圆润，半弧线，发虚感最低 |
+| `Hiragino Sans GB` | macOS 必带（GB 简体字符集） | 接近 PingFang，字符覆盖率足够日常 |
+| `STSong` / `SimSun` | 需手动安装宋体后填入 | 衬线，传统印刷风 |
+| `Noto Sans CJK SC` | `brew install --cask font-noto-sans-cjk` | 开源，覆盖最全 |
+
+Ghostty 1.2+ 推荐用 `font-family` 列表做自动回退，可直接覆盖单行写法：
+
+```ini
+font-family = "JetBrainsMono Nerd Font Mono", "PingFang SC", "Hiragino Sans GB"
+```
+
+> **验证方法**：在 Ghostty 里执行 `echo 测试中文 👑`，若仍出现方框说明字体名未识别，可用 `ghostty +list-fonts | grep -i <font>` 查真实可用的字体名。
 
 ## 许可证
 
