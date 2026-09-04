@@ -47,6 +47,7 @@ Ghostty macOS 配置文件首次开源发布。
 
 - 初始版本：字体（JetBrainsMono Nerd Font + 中文 PingFang SC 回退）、Catppuccin 深浅主题自适应、毛玻璃透明窗口、光标/滚动、粘贴保护、Shell 集成、iTerm2 Tab 快捷键、Option 键作为 Alt
 
+[0.2.1]: https://github.com/kesonglab/ghostty-config/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/kesonglab/ghostty-config/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/kesonglab/ghostty-config/releases/tag/v0.1.0
 [0.0.1]: https://github.com/kesonglab/ghostty-config/releases/tag/v0.0.1
