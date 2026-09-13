@@ -1,5 +1,7 @@
 # ghostty-config
 
+[![CI](https://github.com/kesonglab/ghostty-config/actions/workflows/ci.yml/badge.svg)](https://github.com/kesonglab/ghostty-config/actions/workflows/ci.yml)
+
 本仓库是 [Ghostty](https://ghostty.org/) 终端模拟器在 macOS 下的个人配置文件，也是一份可直接照抄的配置示例。全部设置集中在 `config.ghostty` 单一文件，随用随改。更新历史见 [CHANGELOG.md](CHANGELOG.md)。
 
 ## 功能特性
