@@ -16,6 +16,7 @@
 ### 变更
 
 - `confirm-close-surface` 由 `false` 改为 `true`：有进程运行时关闭窗口会先确认，避免误杀 build / ssh。
+- CI 的 actions 升级到 Node.js 24 兼容版本（`actions/checkout@v7`、`markdownlint-cli2-action@v24`），消除弃用警告。
 
 > 说明：macOS 下改 `background-opacity` 需完全退出 Ghostty 重启，`Cmd + Shift + ,` 热重载不生效。
 
