@@ -4,25 +4,28 @@
 # 校验配置：ghostty +validate-config
 
 # -------- 字体设置 --------
-font-family = "JetBrainsMono Nerd Font Mono"
+# 字体列表回退：中文依次落到 PingFang SC / Hiragino Sans GB
+font-family = "JetBrainsMono Nerd Font Mono", "PingFang SC", "Hiragino Sans GB"
 font-size = 14
 font-thicken = true
-adjust-cell-height = 4
-# 中文 fallback，解决中文渲染发虚
-font-codepoint-map = U+2E80-U+9FFF,U+F900-U+FAFF,U+FF00-U+FFEF=PingFang SC
+# 行高留白，长文本更好扫读
+adjust-cell-height = 8%
 # 新窗口/分屏继承当前字号
 window-inherit-font-size = true
 
 # -------- 主题 跟随系统深浅模式 --------
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 window-theme = auto
+# 自动抬升过淡的前景，救回注释/dim 文本
+minimum-contrast = 3
+faint-opacity = 0.7
 
 # -------- 窗口外观 毛玻璃透明 --------
 macos-titlebar-style = transparent
 window-padding-x = 12
 window-padding-y = 10
 window-padding-balance = true
-background-opacity = 0.72
+background-opacity = 0.9
 background-blur = 18
 window-save-state = always
 
@@ -42,7 +45,7 @@ mouse-scroll-multiplier = precision:1.5
 # -------- 安全与粘贴保护 --------
 clipboard-paste-protection = true
 clipboard-paste-bracketed-safe = true
-confirm-close-surface = false
+confirm-close-surface = true
 
 # -------- Shell 集成（zsh/fish 自动识别） --------
 shell-integration = detect

@@ -3,6 +3,22 @@
 本项目的所有显著变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [0.3.0] - 2026-09-14
+
+### 改进
+
+- **可读性**：`background-opacity` 由 `0.72` 提到 `0.9`，减少桌面内容透出对文字对比度的稀释。
+- 新增 `minimum-contrast = 3`：自动抬升过淡的前景。内置调色板里 Mocha 的 black/bright black 对比度仅 1.80:1 / 2.46:1，Latte 的 white/bright white 仅 1.91:1 / 1.61:1，注释、dim 提示、git 高亮常踩这几个槽位。
+- 新增 `faint-opacity = 0.7`，dim 文本不再那么糊。
+- 中文字体回退改用 `font-family` 列表（`JetBrainsMono Nerd Font Mono` → `PingFang SC` → `Hiragino Sans GB`），替换原 `font-codepoint-map` 单行写法，回退范围更通用。
+- `adjust-cell-height` 由 `4` 改为 `8%`，行间距更宽，长文本更好扫读。
+
+### 变更
+
+- `confirm-close-surface` 由 `false` 改为 `true`：有进程运行时关闭窗口会先确认，避免误杀 build / ssh。
+
+> 说明：macOS 下改 `background-opacity` 需完全退出 Ghostty 重启，`Cmd + Shift + ,` 热重载不生效。
+
 ## [0.2.1] - 2026-09-04
 
 ### 新增
@@ -47,6 +63,7 @@ Ghostty macOS 配置文件首次开源发布。
 
 - 初始版本：字体（JetBrainsMono Nerd Font + 中文 PingFang SC 回退）、Catppuccin 深浅主题自适应、毛玻璃透明窗口、光标/滚动、粘贴保护、Shell 集成、iTerm2 Tab 快捷键、Option 键作为 Alt
 
+[0.3.0]: https://github.com/kesonglab/ghostty-config/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/kesonglab/ghostty-config/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/kesonglab/ghostty-config/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/kesonglab/ghostty-config/releases/tag/v0.1.0
