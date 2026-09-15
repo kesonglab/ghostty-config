@@ -73,4 +73,4 @@ macos-option-as-alt = left
 
 # -------- 默认工作目录：新窗口/新标签初始打开到此处 --------
 # 注意：该目录必须存在，否则 Ghostty 无法 chdir，新窗口会落到「/」而不是 ~
-working-directory = "~/Documents/github:kesonglab"
+working-directory = "~/Documents/github-kesonglab"
