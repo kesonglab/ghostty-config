@@ -12,6 +12,7 @@
 
 ### 修复
 
+- `working-directory` 路径更正：由 `~/Documents/github:kesonglab` 改为实际存在的 `~/Documents/github-kesonglab`，并同步更新 README。
 - `working-directory` 补注释：目录必须存在，否则新窗口会落到 `/` 而非 `~`（本次「默认目录显示 `/`」即由此引起）。
 - README 更正：Ghostty 只读取**第一个存在**的配置文件，多份配置不会合并。
 

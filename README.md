@@ -22,7 +22,7 @@
 ### 工作区
 
 - Shell 集成自动检测 zsh / fish，窗口标题随当前命令/目录更新
-- 新窗口/标签默认打开到 `~/Documents/github:kesonglab`（`working-directory`）
+- 新窗口/标签默认打开到 `~/Documents/github-kesonglab`（`working-directory`）
 - 快捷键布局参考 iTerm2 习惯，含 **Tab 与分屏操作**；macOS Option 键作为 Alt，便于按词跳转
 
 ### 快捷键速览（iTerm2 习惯）
