@@ -35,6 +35,8 @@
 | `cmd + alt + 方向键` | 在分屏间切换 |
 | `cmd + shift + ,` | 重载配置 |
 
+> 其中 `cmd+t` / `cmd+w` / `cmd+d` / `cmd+shift+d` / `cmd+alt+方向键` 本就是 Ghostty 默认绑定，列在此处仅为显式声明。
+
 ## CI 自动化检查
 
 通过 [GitHub Actions](https://github.com/kesonglab/ghostty-config/actions)，每次 push / PR 自动运行：
@@ -73,7 +75,7 @@ macOS 上生效路径为 `~/Library/Application Support/com.mitchellh.ghostty/co
 cp config.ghostty "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty"
 ```
 
-`~/.config/ghostty/config` 同样可读，两路径并存会合并——本机用 `Cmd + ,` 维护 Library 路径那份，故推荐前者。
+`~/.config/ghostty/config` 同样可读，但 Ghostty 只读取**第一个存在**的文件，多份配置不会合并（确需合并可用 `config-file` 显式 include）。macOS 优先 Library 路径，本机也用 `Cmd + ,` 维护这份，故推荐前者。
 
 ### 重载配置
 
@@ -108,6 +110,20 @@ ghostty +list-themes
 | `Noto Sans CJK SC` | `brew install --cask font-noto-sans-cjk` | 开源，覆盖最全 |
 
 > **验证方法**：在 Ghostty 里执行 `echo 测试中文 👑`，若仍出现方框说明字体名未识别，可用 `ghostty +list-fonts | grep -i <font>` 查真实可用的字体名。
+
+### 字体文件在，但系统没激活
+
+macOS 下把字体拷进 `~/Library/Fonts` 后，偶尔 `fontd` 不会立即登记，导致 Ghostty 静默回退到默认字体（如 Menlo）——新装机、迁移数据后尤其常见。排查与修复：
+
+```bash
+# 查看系统已激活的字族里有没有目标字体（输出为空 = 没激活）
+osascript -l JavaScript -e 'ObjC.import("AppKit"); console.log(ObjC.deepUnwrap($.NSFontManager.sharedFontManager.availableFontFamilies).filter(function(f){return /jetbrains/i.test(f);}))'
+
+# 重启字体服务，触发重扫
+killall fontd
+```
+
+`ghostty +list-fonts` 只在字体已激活后才会列出对应字族，可用来二次确认。
 
 ## 许可证
 

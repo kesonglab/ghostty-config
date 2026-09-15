@@ -65,9 +65,12 @@ keybind = cmd+alt+left=goto_split:left
 keybind = cmd+alt+right=goto_split:right
 keybind = cmd+alt+up=goto_split:top
 keybind = cmd+alt+down=goto_split:bottom
+# 非焦点分屏略微变暗，便于分辨焦点（默认 0.7，0.85 更清晰）
+unfocused-split-opacity = 0.85
 
 # -------- macOS Option键行为：Option作为Alt，方便跳转单词 --------
 macos-option-as-alt = left
 
 # -------- 默认工作目录：新窗口/新标签初始打开到此处 --------
+# 注意：该目录必须存在，否则 Ghostty 无法 chdir，新窗口会落到「/」而不是 ~
 working-directory = "~/Documents/github:kesonglab"

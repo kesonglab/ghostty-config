@@ -3,6 +3,22 @@
 本项目的所有显著变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [0.4.0] - 2026-09-15
+
+### 新增
+
+- 分屏：新增 `unfocused-split-opacity = 0.85`（默认 0.7），非焦点分屏变暗幅度更小，便于分辨焦点。
+- README 新增「字体文件在，但系统没激活」小节：字体放入 `~/Library/Fonts` 后若 `fontd` 未登记，Ghostty 会静默回退默认字体；给出检测方法与 `killall fontd` 修复。
+
+### 修复
+
+- `working-directory` 补注释：目录必须存在，否则新窗口会落到 `/` 而非 `~`（本次「默认目录显示 `/`」即由此引起）。
+- README 更正：Ghostty 只读取**第一个存在**的配置文件，多份配置不会合并。
+
+### 文档
+
+- 说明 `cmd+t`、`cmd+w`、`cmd+d`、`cmd+shift+d`、`cmd+alt+方向键` 等本已为 Ghostty 默认快捷键，配置中保留仅为显式声明。
+
 ## [0.3.0] - 2026-09-14
 
 ### 改进
@@ -64,6 +80,7 @@ Ghostty macOS 配置文件首次开源发布。
 
 - 初始版本：字体（JetBrainsMono Nerd Font + 中文 PingFang SC 回退）、Catppuccin 深浅主题自适应、毛玻璃透明窗口、光标/滚动、粘贴保护、Shell 集成、iTerm2 Tab 快捷键、Option 键作为 Alt
 
+[0.4.0]: https://github.com/kesonglab/ghostty-config/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/kesonglab/ghostty-config/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/kesonglab/ghostty-config/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/kesonglab/ghostty-config/compare/v0.1.0...v0.2.0
