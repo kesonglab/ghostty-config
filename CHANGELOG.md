@@ -3,6 +3,25 @@
 本项目的所有显著变更记录于此。
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [0.5.0] - 2026-09-16
+
+### 改进
+
+- Shell 集成增加 `ssh-terminfo`：SSH 时自动安装远程 Ghostty terminfo，减少缺 `xterm-ghostty` 导致的花屏/按键异常。
+- `copy-on-select` 由 `clipboard` 改为 `true`：降低误选覆盖系统剪贴板的概率（需要「划选必写系统剪贴板」时可改回 `clipboard`）。
+- `scrollbar` 由 `never` 改为 `system`：跟随系统滚动条，长滚动缓冲更好定位。
+- `font-family` 改为官方推荐的多行回退写法。
+
+### 新增
+
+- 显式声明分屏尺寸调节 / 均分快捷键（`cmd+ctrl+方向键`、`cmd+ctrl+=`，本即为默认）。
+- 显式声明跳提示符快捷键（`cmd+shift+↑/↓`，本即为默认）。
+- Quick Terminal：`global:cmd+\``（Cmd+\`）全局呼出；首次需在系统「辅助功能」中授权 Ghostty。
+
+### 文档
+
+- README 同步快捷键表与上述行为说明；`working-directory` 注明他人照抄需改路径。
+
 ## [0.4.0] - 2026-09-15
 
 ### 新增
@@ -81,6 +100,7 @@ Ghostty macOS 配置文件首次开源发布。
 
 - 初始版本：字体（JetBrainsMono Nerd Font + 中文 PingFang SC 回退）、Catppuccin 深浅主题自适应、毛玻璃透明窗口、光标/滚动、粘贴保护、Shell 集成、iTerm2 Tab 快捷键、Option 键作为 Alt
 
+[0.5.0]: https://github.com/kesonglab/ghostty-config/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/kesonglab/ghostty-config/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/kesonglab/ghostty-config/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/kesonglab/ghostty-config/compare/v0.2.0...v0.2.1

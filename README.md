@@ -11,19 +11,20 @@
 - 字体：JetBrainsMono Nerd Font Mono，中文依次回退 PingFang SC、Hiragino Sans GB（macOS 自带，毛玻璃/Retina 下渲染不发虚）；新窗口/分屏继承当前字号
 - 主题随系统深浅模式自动切换：浅色 Catppuccin Latte、深色 Catppuccin Mocha
 - 毛玻璃窗口（`background-opacity = 0.9`）；`minimum-contrast = 3` 与 `faint-opacity = 0.7` 保证注释、dim 文本可读
-- 支持自定义内边距
+- 滚动条跟随系统（`scrollbar = system`）；支持自定义内边距
 
 ### 交互
 
 - 光标为竖线带闪烁；滚动缓冲区 `scrollback-limit = 10000000`（按字节计，限 10MB）
-- 输入时自动隐藏鼠标、选取即复制；触控板滚动速度微调
-- 剪贴板粘贴保护开启
+- 输入时自动隐藏鼠标；选取即复制（`copy-on-select = true`，比 `clipboard` 更少误冲系统剪贴板）
+- 触控板滚动速度微调；剪贴板粘贴保护开启
+- Quick Terminal：全局快捷键 `Cmd + \``（反引号；需系统「辅助功能」授权）
 
 ### 工作区
 
-- Shell 集成自动检测 zsh / fish，窗口标题随当前命令/目录更新
-- 新窗口/标签默认打开到 `~/Documents/github-kesonglab`（`working-directory`）
-- 快捷键布局参考 iTerm2 习惯，含 **Tab 与分屏操作**；macOS Option 键作为 Alt，便于按词跳转
+- Shell 集成自动检测 zsh / fish；含 `title`、`ssh-env`、`ssh-terminfo`（远程自动装 terminfo）等
+- 新窗口/标签默认打开到 `~/Documents/github-kesonglab`（`working-directory`；他人照抄请改成 `home` 或自己的路径）
+- 快捷键布局参考 iTerm2 习惯，含 Tab、分屏、跳提示符；macOS Option 键作为 Alt，便于按词跳转
 
 ### 快捷键速览（iTerm2 习惯）
 
@@ -33,9 +34,13 @@
 | `cmd + shift + left / right` | 上一个 / 下一个 Tab |
 | `cmd + d` / `cmd + shift + d` | 新建右侧 / 底部（上下）分屏 |
 | `cmd + alt + 方向键` | 在分屏间切换 |
+| `cmd + ctrl + 方向键` | 调整分屏尺寸 |
+| `cmd + ctrl + =` | 均分分屏 |
+| `cmd + shift + ↑ / ↓` | 跳到上 / 下一条 shell 提示符 |
+| `cmd + \``（全局） | 呼出 / 收起 Quick Terminal |
 | `cmd + shift + ,` | 重载配置 |
 
-> 其中 `cmd+t` / `cmd+w` / `cmd+d` / `cmd+shift+d` / `cmd+alt+方向键` 本就是 Ghostty 默认绑定，列在此处仅为显式声明。
+> 其中 `cmd+t` / `cmd+w` / `cmd+d` / `cmd+shift+d` / `cmd+alt+方向键` / `cmd+ctrl+方向键` / `cmd+ctrl+=` / `cmd+shift+↑↓` 本就是 Ghostty 默认绑定，列在此处仅为显式声明。`cmd+\`` 为新增全局绑定。
 
 ## CI 自动化检查
 

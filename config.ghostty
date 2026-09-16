@@ -4,8 +4,10 @@
 # 校验配置：ghostty +validate-config
 
 # -------- 字体设置 --------
-# 字体列表回退：中文依次落到 PingFang SC / Hiragino Sans GB
-font-family = "JetBrainsMono Nerd Font Mono", "PingFang SC", "Hiragino Sans GB"
+# 官方推荐多行 font-family 回退（Ghostty 1.2+）；中文依次落到 PingFang SC / Hiragino Sans GB
+font-family = JetBrainsMono Nerd Font Mono
+font-family = PingFang SC
+font-family = Hiragino Sans GB
 font-size = 14
 font-thicken = true
 # 行高留白，长文本更好扫读
@@ -15,6 +17,7 @@ window-inherit-font-size = true
 
 # -------- 主题 跟随系统深浅模式 --------
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+# 已设 light:/dark: 主题时，auto 等价于跟系统；保留以便非终端窗口也一致
 window-theme = auto
 # 自动抬升过淡的前景，救回注释/dim 文本
 minimum-contrast = 3
@@ -34,11 +37,14 @@ cursor-style = bar
 cursor-style-blink = true
 # 滚动缓冲区按字节计，10MB 默认（重度日志可调 100000000）
 scrollback-limit = 10000000
-scrollbar = never
+# 跟随系统滚动条（默认）；比 never 更容易在长缓冲里定位
+scrollbar = system
 
 # -------- 鼠标行为 --------
 mouse-hide-while-typing = true
-copy-on-select = clipboard
+# true：优先 selection clipboard，否则系统剪贴板（macOS 通常落到系统剪贴板）
+# 若要「划选必覆盖系统剪贴板」可改回 clipboard（误选更容易冲掉刚复制的内容）
+copy-on-select = true
 # 触控板滚动速度微调（可选，默认 precision:1）
 mouse-scroll-multiplier = precision:1.5
 
@@ -49,28 +55,43 @@ confirm-close-surface = true
 
 # -------- Shell 集成（zsh/fish 自动识别） --------
 shell-integration = detect
-shell-integration-features = title,cursor,sudo,ssh-env,path
+# ssh-terminfo：SSH 时自动给远程装 Ghostty terminfo，减少缺 xterm-ghostty 导致的花屏/按键异常
+shell-integration-features = title,cursor,sudo,ssh-env,ssh-terminfo,path
 
 # -------- 快捷键 （iTerm2习惯） --------
-# Tab标签
+# Tab标签（cmd+t / cmd+w 为默认，显式声明便于对照）
 keybind = cmd+t=new_tab
 keybind = cmd+w=close_surface
 keybind = cmd+shift+left=previous_tab
 keybind = cmd+shift+right=next_tab
 
-# 分屏
+# 分屏（新建/跳转为默认；尺寸调节与均分亦为默认，显式声明便于发现）
 keybind = cmd+d=new_split:right
 keybind = cmd+shift+d=new_split:down
 keybind = cmd+alt+left=goto_split:left
 keybind = cmd+alt+right=goto_split:right
 keybind = cmd+alt+up=goto_split:top
 keybind = cmd+alt+down=goto_split:bottom
+# 以下为 Ghostty 默认绑定，显式写出便于发现（与 +list-keybinds --default 一致）
+keybind = cmd+ctrl+arrow_left=resize_split:left,10
+keybind = cmd+ctrl+arrow_right=resize_split:right,10
+keybind = cmd+ctrl+arrow_up=resize_split:up,10
+keybind = cmd+ctrl+arrow_down=resize_split:down,10
+keybind = cmd+ctrl+==equalize_splits
 # 非焦点分屏略微变暗，便于分辨焦点（默认 0.7，0.85 更清晰）
 unfocused-split-opacity = 0.85
+
+# 跳到上/下一条 shell 提示符（依赖 shell-integration；默认绑定，显式声明）
+keybind = cmd+shift+arrow_up=jump_to_prompt:-1
+keybind = cmd+shift+arrow_down=jump_to_prompt:1
+
+# Quick Terminal（默认无绑定）：Cmd+` 全局呼出；首次需在「系统设置 → 隐私与安全性 → 辅助功能」授权 Ghostty
+keybind = global:cmd+grave_accent=toggle_quick_terminal
 
 # -------- macOS Option键行为：Option作为Alt，方便跳转单词 --------
 macos-option-as-alt = left
 
 # -------- 默认工作目录：新窗口/新标签初始打开到此处 --------
 # 注意：该目录必须存在，否则 Ghostty 无法 chdir，新窗口会落到「/」而不是 ~
+# 仅影响「无已有窗口可继承」时的首个窗口；他人照抄请改成 home 或自己的路径
 working-directory = "~/Documents/github-kesonglab"
