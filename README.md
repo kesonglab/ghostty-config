@@ -8,7 +8,9 @@
 
 > 将 Kaku 0.30 的默认终端配置逐项移植到 Ghostty 1.4：主题、字体、窗口、交互与键位均对齐 Kaku 默认值，并保留 Ghostty 的毛玻璃模糊。
 
-![Kaku Dark / Kaku Light 预览](assets/preview.png)
+| Kaku Dark | Kaku Light |
+| :---: | :---: |
+| ![Kaku Dark 主题预览](assets/preview-dark.png) | ![Kaku Light 主题预览](assets/preview-light.png) |
 
 ## 特性
 
@@ -144,7 +146,9 @@ ghostty-config
 ├── themes/
 │   ├── Kaku Dark           # Kaku 深色主题
 │   └── Kaku Light          # Kaku 浅色主题
-├── assets/preview.png      # README 预览图
+├── assets/
+│   ├── preview-dark.png    # Kaku Dark 预览截图
+│   └── preview-light.png   # Kaku Light 预览截图
 ├── CHANGELOG.md            # 版本记录
 ├── CITATION.cff            # 引用元数据
 ├── .github/workflows/ci.yml

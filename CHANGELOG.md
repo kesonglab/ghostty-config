@@ -11,7 +11,7 @@ Kaku 0.30 默认配置移植版：主题、字体、窗口、交互与键位对�
 - `themes/Kaku Dark`、`themes/Kaku Light`：完整 Kaku 调色板（背景、前景、光标、选中、ANSI 0–15），随系统深浅色切换
 - Kaku 键位：`cmd+r` 清屏、`cmd+shift+w` 关标签、`cmd+shift+↑` 置顶、`cmd+shift+i` 重命名标签、`cmd+enter` / `shift+enter` 换行不执行、`opt+backspace` 删词、`cmd+ctrl+方向键` 调整分屏
 - Quick Terminal 映射 Kaku 全局抽屉：顶部、1/3 高度、200 ms、失焦隐藏，快捷键 `cmd+opt+ctrl+k`
-- CI 校验两个主题文件；新增 `CITATION.cff` 与 `assets/preview.png`
+- CI 校验两个主题文件；新增 `CITATION.cff` 与预览截图 `assets/preview-dark.png`、`assets/preview-light.png`
 
 ### 变更
 
