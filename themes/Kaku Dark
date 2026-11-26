@@ -1,0 +1,31 @@
+# Kaku Dark —— 与 Kaku.app 内置 "Kaku Dark" 配色一致（WezTerm 分支 Kaku 0.30 默认深色主题）
+# 用法：放到 ~/.config/ghostty/themes/ 下，config.ghostty 里 theme = light:Kaku Light,dark:Kaku Dark
+# 说明：Kaku 的 selection_bg 为 rgba(142,106,217,0.55)，Ghostty 主题只接受不透明色，
+#       这里取该半透明紫叠加在 #15141b 背景上的等效色 #584384。
+
+background = #15141b
+foreground = #d5d4d6
+
+cursor-color = #8e6ad9
+cursor-text = #15141b
+
+selection-background = #584384
+selection-foreground = #d5d4d6
+
+# ANSI 0-15（与 Kaku Dark 的 ansi/brights 表逐项一致；Kaku 把 ANSI 黑前景做成浅色）
+palette = 0=#c8c6cc
+palette = 1=#d85d5d
+palette = 2=#58d8ad
+palette = 3=#daae76
+palette = 4=#68afda
+palette = 5=#8e6ad9
+palette = 6=#58d8ad
+palette = 7=#d5d4d6
+palette = 8=#6d6d6d
+palette = 9=#d85d5d
+palette = 10=#58d8ad
+palette = 11=#daae76
+palette = 12=#90c9e6
+palette = 13=#8e6ad9
+palette = 14=#58d8ad
+palette = 15=#d5d4d6

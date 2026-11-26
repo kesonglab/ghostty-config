@@ -1,0 +1,29 @@
+# Kaku Light —— 与 Kaku.app 内置 "Kaku Light" 配色一致（WezTerm 分支 Kaku 0.30 默认浅色主题）
+# 用法：放到 ~/.config/ghostty/themes/ 下，config.ghostty 里 theme = light:Kaku Light,dark:Kaku Dark
+
+background = #fffcf0
+foreground = #100f0f
+
+cursor-color = #343331
+cursor-text = #fffcf0
+
+selection-background = #e8e6db
+selection-foreground = #100f0f
+
+# ANSI 0-15（与 Kaku Light 的 ansi/brights 表逐项一致）
+palette = 0=#100f0f
+palette = 1=#af3029
+palette = 2=#536907
+palette = 3=#8e6b02
+palette = 4=#205ea6
+palette = 5=#a02f6f
+palette = 6=#1c6c66
+palette = 7=#575653
+palette = 8=#6f6e69
+palette = 9=#c03e35
+palette = 10=#66790d
+palette = 11=#8e6b02
+palette = 12=#3171b2
+palette = 13=#b74583
+palette = 14=#277c75
+palette = 15=#403e3c

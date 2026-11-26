@@ -16,10 +16,16 @@ jobs:
       - name: Install Ghostty
         run: brew install --cask ghostty
 
-      - name: Validate config
+      - name: Validate config and themes
         run: |
           GHOSTTY="/Applications/Ghostty.app/Contents/MacOS/ghostty"
+          # config.ghostty 通过 theme = light:Kaku Light,dark:Kaku Dark 引用主题，
+          # 主题必须位于 ~/.config/ghostty/themes 才能解析成功（缺失时 validate 返回非 0）。
+          mkdir -p "$HOME/.config/ghostty/themes"
+          cp themes/"Kaku Dark" themes/"Kaku Light" "$HOME/.config/ghostty/themes/"
           "$GHOSTTY" +validate-config --config-file=config.ghostty
+          "$GHOSTTY" +validate-config --config-file="themes/Kaku Dark"
+          "$GHOSTTY" +validate-config --config-file="themes/Kaku Light"
 
   markdownlint:
     name: markdownlint

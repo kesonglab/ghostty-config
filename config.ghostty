@@ -1,97 +1,139 @@
-# ================= Ghostty 开箱配置 macOS =================
-# 重载配置快捷键：Cmd + Shift + ,
-# 查看内置全部主题：ghostty +list-themes
-# 校验配置：ghostty +validate-config
+# ================= Ghostty × Kaku 一比一复刻（macOS） =================
+# 基准：Kaku.app 0.30（WezTerm 分支）内置默认配置
+#       参考文件：/Applications/Kaku.app/Contents/Resources/kaku.lua
+# 目标：主题、字体、间距、光标、滚动、鼠标、键位与 Kaku 默认值逐项对齐；
+#       唯一刻意偏离：保留 Ghostty 的毛玻璃高斯模糊（Kaku 默认不透明）。
+#
+# 依赖：themes/Kaku Dark、themes/Kaku Light 两个主题文件，需先放入 Ghostty 主题目录：
+#   mkdir -p ~/.config/ghostty/themes
+#   cp themes/"Kaku Dark" themes/"Kaku Light" ~/.config/ghostty/themes/
+#
+# 重载配置：Cmd + Shift + ,    校验：ghostty +validate-config    主题：ghostty +list-themes
 
-# -------- 字体设置 --------
-# 官方推荐多行 font-family 回退（Ghostty 1.2+）；中文依次落到 PingFang SC / Hiragino Sans GB
+# -------- 主题：Kaku Dark / Kaku Light 跟随系统深浅色 --------
+# Kaku: color_scheme 随 macOS 外观自动切换 Kaku Dark / Kaku Light
+theme = light:Kaku Light,dark:Kaku Dark
+window-theme = auto
+
+# -------- 字体：JetBrains Mono 17pt / 行高 1.28 / 关闭连字 --------
+# Kaku 配置为 JetBrains Mono（应用内置），中文回退 PingFang SC，符号回退 Apple Symbols。
+# 本机未装原版 JetBrains Mono 时，Ghostty 会跳过缺失项落到已安装的 Nerd Font 版（字形一致）。
+font-family = JetBrains Mono
 font-family = JetBrainsMono Nerd Font Mono
 font-family = PingFang SC
-font-family = Hiragino Sans GB
-font-size = 14
-font-thicken = true
-# 行高留白，长文本更好扫读
-adjust-cell-height = 8%
-# 新窗口/分屏继承当前字号
+font-family = Apple Symbols
+# Kaku: 高分屏 17pt（低分屏 15pt；Ghostty 不支持按屏幕自动切换，按本机高分屏取 17）
+font-size = 17
+# Kaku: line_height = 1.28 -> 行高增加 28%
+adjust-cell-height = 28%
+# Kaku: harfbuzz_features = calt/clig/liga 全部关闭 -> 关闭编程连字
+font-feature = -calt,-clig,-liga
+# Kaku: 普通斜体不倾斜（保持直立）；粗斜体仍为真斜体
+font-style-italic = Regular
+# Kaku: 深色主题粗体字重为 Medium（浅色主题为 SemiBold，Ghostty 不能按主题切换字重，这里对齐深色）
+font-style-bold = Medium
+# 新窗口/分屏继承当前字号（Ghostty 默认 true，显式声明便于对照）
 window-inherit-font-size = true
 
-# -------- 主题 跟随系统深浅模式 --------
-theme = light:Catppuccin Latte,dark:Catppuccin Mocha
-# 已设 light:/dark: 主题时，auto 等价于跟系统；保留以便非终端窗口也一致
-window-theme = auto
-# 自动抬升过淡的前景，救回注释/dim 文本
-minimum-contrast = 3
-faint-opacity = 0.7
-
-# -------- 窗口外观 毛玻璃透明 --------
-macos-titlebar-style = transparent
-window-padding-x = 12
-window-padding-y = 10
-window-padding-balance = true
+# -------- 窗口外观：透明标题栏 + 毛玻璃（刻意保留高斯模糊）--------
+# Kaku: window_background_opacity = 1.0（不透明）；本配置保留 Ghostty 的毛玻璃效果
 background-opacity = 0.9
 background-blur = 18
+# Kaku: window_padding = 左右上 40px、下 0（物理像素；Retina 2x 即 20pt）
+window-padding-x = 20
+window-padding-y = 20,0
+window-padding-balance = false
+# Kaku: window_decorations = INTEGRATED_BUTTONS|RESIZE -> 透明标题栏内嵌系统红绿灯
+macos-titlebar-style = transparent
+# 注意：Kaku 的「底部自绘标签栏」无法用 Ghostty 配置复刻——macOS 端标签栏只有原生/标题栏两种位置，
+# `gtk-tabs-location` 仅 Linux，Ghostty 也没有可自绘窗口 UI 的扩展机制；像素级一致只能 fork 改 macOS 前端。
+# Kaku 标题栏只留红绿灯、不显示标题文字；Ghostty 原生标题栏会显示标题。
+# 想要完全一致可取消下一行注释（副作用：Mission Control / 标签页标题也会被清空）：
+# title = " "
+# Kaku: initial_cols = 110 / initial_rows = 22
+window-width = 110
+window-height = 22
+# Kaku: restore_previous_session = true（启动恢复上次窗口/标签/分屏与尺寸）
 window-save-state = always
 
-# -------- 光标、滚动 --------
+# -------- 光标 --------
+# Kaku: default_cursor_style = BlinkingBar / cursor_thickness = 2px / blink 500ms
+# Ghostty 无光标粗细与闪烁间隔配置，其余对齐
 cursor-style = bar
 cursor-style-blink = true
-# 滚动缓冲区按字节计，10MB 默认（重度日志可调 100000000）
-scrollback-limit = 10000000
-# 跟随系统滚动条（默认）；比 never 更容易在长缓冲里定位
-scrollbar = system
 
-# -------- 鼠标行为 --------
+# -------- 滚动 --------
+# Kaku: scrollback_lines = 10000（Ghostty 按行限制，且不含当前屏；两者语义一致）
+scrollback-limit-lines = 10000
+# Kaku 只有行数上限，没有字节上限；把 Ghostty 默认的 50MB 上限放开，让行数成为唯一限制
+scrollback-limit-bytes = unlimited
+# Kaku: enable_scroll_bar = false
+scrollbar = never
+
+# -------- 鼠标与选择 --------
+# Kaku: copy_on_select = true（左键划选抬起即复制到系统剪贴板）
+copy-on-select = clipboard
+# Kaku/WezTerm: 输入时隐藏鼠标指针
 mouse-hide-while-typing = true
-# true：优先 selection clipboard，否则系统剪贴板（macOS 通常落到系统剪贴板）
-# 若要「划选必覆盖系统剪贴板」可改回 clipboard（误选更容易冲掉刚复制的内容）
-copy-on-select = true
-# 触控板滚动速度微调（可选，默认 precision:1）
-mouse-scroll-multiplier = precision:1.5
+# Kaku: selection_word_boundary = ' \t\n{}[]()"'-'
+selection-word-chars = " \t\n{}[]()\"'-"
 
-# -------- 安全与粘贴保护 --------
-clipboard-paste-protection = true
-clipboard-paste-bracketed-safe = true
+# -------- 可读性与分屏 --------
+# Kaku: text_min_contrast_ratio = 3.0
+minimum-contrast = 3
+# Kaku: inactive_pane_hsb = { saturation=1.0, brightness=1.0 }（非焦点分屏不压暗）
+unfocused-split-opacity = 1
+
+# -------- 关闭保护 --------
+# Kaku: window/tab/pane_close_confirmation = SmartPrompt（有进程运行时确认）
 confirm-close-surface = true
 
-# -------- Shell 集成（zsh/fish 自动识别） --------
-shell-integration = detect
-# ssh-terminfo：SSH 时自动给远程装 Ghostty terminfo，减少缺 xterm-ghostty 导致的花屏/按键异常
-shell-integration-features = title,cursor,sudo,ssh-env,ssh-terminfo,path
-
-# -------- 快捷键 （iTerm2习惯） --------
-# Tab标签（cmd+t / cmd+w 为默认，显式声明便于对照）
-keybind = cmd+t=new_tab
-keybind = cmd+w=close_surface
-keybind = cmd+shift+left=previous_tab
-keybind = cmd+shift+right=next_tab
-
-# 分屏（新建/跳转为默认；尺寸调节与均分亦为默认，显式声明便于发现）
-keybind = cmd+d=new_split:right
-keybind = cmd+shift+d=new_split:down
-keybind = cmd+alt+left=goto_split:left
-keybind = cmd+alt+right=goto_split:right
-keybind = cmd+alt+up=goto_split:top
-keybind = cmd+alt+down=goto_split:bottom
-# 以下为 Ghostty 默认绑定，显式写出便于发现（与 +list-keybinds --default 一致）
-keybind = cmd+ctrl+arrow_left=resize_split:left,10
-keybind = cmd+ctrl+arrow_right=resize_split:right,10
-keybind = cmd+ctrl+arrow_up=resize_split:up,10
-keybind = cmd+ctrl+arrow_down=resize_split:down,10
-keybind = cmd+ctrl+==equalize_splits
-# 非焦点分屏略微变暗，便于分辨焦点（默认 0.7，0.85 更清晰）
-unfocused-split-opacity = 0.85
-
-# 跳到上/下一条 shell 提示符（依赖 shell-integration；默认绑定，显式声明）
-keybind = cmd+shift+arrow_up=jump_to_prompt:-1
-keybind = cmd+shift+arrow_down=jump_to_prompt:1
-
-# Quick Terminal（默认无绑定）：Cmd+` 全局呼出；首次需在「系统设置 → 隐私与安全性 → 辅助功能」授权 Ghostty
-keybind = global:cmd+grave_accent=toggle_quick_terminal
-
-# -------- macOS Option键行为：Option作为Alt，方便跳转单词 --------
+# -------- macOS 键盘与窗口行为 --------
+# Kaku: 左 Option = Meta（Alt），右 Option = 输入法组合字符
 macos-option-as-alt = left
+# Kaku: native_macos_fullscreen_mode = true -> Ghostty 默认原生全屏（macos-non-native-fullscreen = false），一致
+# Kaku: quit_when_all_windows_are_closed = false -> Ghostty 默认关掉最后一个窗口不退出，一致
+# Kaku: use_resize_increments = false -> Ghostty 默认 window-step-resize = false，一致
 
-# -------- 默认工作目录：新窗口/新标签初始打开到此处 --------
-# 注意：该目录必须存在，否则 Ghostty 无法 chdir，新窗口会落到「/」而不是 ~
-# 仅影响「无已有窗口可继承」时的首个窗口；他人照抄请改成 home 或自己的路径
-working-directory = "~/Documents/github-kesonglab"
+# -------- Shell 集成 --------
+# Kaku 自带 zsh/fish 集成；Ghostty 用 detect 自动注入，提供 cwd/title/prompt 标记
+shell-integration = detect
+
+# -------- 快捷键：Kaku 默认键位（仅列与 Ghostty 默认不同者）--------
+# Cmd+R = 清屏并清空滚动缓冲（Kaku 兼容绑定；Ghostty 默认 Cmd+K 同效）
+keybind = cmd+r=clear_screen
+# Cmd+Shift+W = 关闭当前标签页（Ghostty 默认该键为关闭窗口）
+keybind = cmd+shift+w=close_tab:this
+# Cmd+Shift+↑ = 当前窗口置顶（Kaku「Toggle always on top」）
+keybind = cmd+shift+arrow_up=toggle_window_float_on_top
+# Cmd+Shift+I = 重命名标签页（Kaku 为行内改名，Ghostty 为弹窗改名）
+keybind = cmd+shift+i=prompt_tab_title
+# Cmd+Enter / Shift+Enter = 换行但不执行
+keybind = cmd+enter=text:\n
+keybind = shift+enter=text:\n
+# Opt+Backspace = 删除前一个词（Ctrl+W）
+keybind = alt+backspace=text:\x17
+# Cmd+Ctrl+方向键 = 调整分屏尺寸，步长 5（Kaku 为 5，Ghostty 默认 10）
+keybind = cmd+ctrl+arrow_left=resize_split:left,5
+keybind = cmd+ctrl+arrow_right=resize_split:right,5
+keybind = cmd+ctrl+arrow_up=resize_split:up,5
+keybind = cmd+ctrl+arrow_down=resize_split:down,5
+
+# -------- Quick Terminal：对应 Kaku 的全局 Drawer 窗口 --------
+# Kaku: macOS 全局抽屉，顶部滑出、高度 1/3、动画 200ms、失焦自动隐藏
+quick-terminal-position = top
+quick-terminal-size = 33.33%
+quick-terminal-animation-duration = 0.2
+quick-terminal-autohide = true
+quick-terminal-space-behavior = move
+quick-terminal-screen = main
+# Kaku: Cmd + Opt + Ctrl + K 全局呼出/收起；首次需在「系统设置 → 隐私与安全性 → 辅助功能」授权 Ghostty
+keybind = global:cmd+alt+ctrl+k=toggle_quick_terminal
+
+# -------- 与 Ghostty 默认一致、无需重复声明的 Kaku 键位 --------
+# Cmd+N/T/Q/W/M/H、Cmd+=/-/0、Cmd+Ctrl+F（全屏）、Cmd+D / Cmd+Shift+D（分屏）、
+# Cmd+Alt+方向键（切分屏）、Cmd+Shift+Enter（最大化分屏）、Cmd+1..9（切标签，Cmd+9 为最后一个）、
+# Cmd+Shift+[ / ]（前后标签）、Cmd+Shift+P（命令面板）、Cmd+,（设置）、Cmd+K（清屏）、
+# Opt+←/→（按词跳转）、Cmd+←/→（行首/行尾）、Cmd+Backspace（删到行首）、
+# Cmd+Click（打开链接）、Opt+Click（移动光标到点击处）、
+# Cmd+Shift+T（恢复关闭的标签，Ghostty 为 5 秒内 undo）
