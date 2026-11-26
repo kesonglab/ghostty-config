@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "若在学术或工程研究中引用本配置工程，请使用以下元数据。"
+title: "ghostty-config: a one-to-one Ghostty configuration port of Kaku for macOS"
+type: software
+version: 1.0.0
+date-released: "2026-11-26"
+authors:
+  - name: "kesonglab"
+repository-code: "https://github.com/kesonglab/ghostty-config"
+url: "https://github.com/kesonglab/ghostty-config"
+license: MIT
+keywords:
+  - terminal emulator
+  - Ghostty
+  - Kaku
+  - WezTerm
+  - configuration
+  - macOS
+abstract: "A Ghostty configuration project that ports the default appearance, keybindings and behavior of Kaku 0.30 to Ghostty 1.4 on macOS, with static validation, pixel-level rendering measurements and an explicit mapping-gap analysis."
